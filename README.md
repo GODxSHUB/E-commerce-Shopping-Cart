@@ -1,19 +1,18 @@
-readme_content = """# E-Commerce Shopping Cart (Terminal App)
+# E-Commerce Shopping Cart
 
-A lightweight, terminal-based E-commerce Shopping Cart application built entirely in Python. This project was developed as a core task for the **Pinnacle Labs 2026 Internship Program**.
+A simple terminal-based Python program for an E-commerce Shopping Cart. This is my project for the PINNACLE LABS 2026 Internship Program.
 
-## Overview
-This application simulates a foundational digital storefront. To maximize readability and maintain a beginner-friendly codebase, the architecture deliberately prioritizes straightforward Python constructs—such as standard `for` loops, basic lists, and dictionaries—rather than complex frameworks or advanced syntax like list comprehensions. 
+## What It Does
+* Shows a list of products you can buy.
+* Lets you pick items and add them to your cart.
+* Calculates your total price automatically.
+* Simulates a basic checkout using a 16-digit card number.
 
-## Features
-* **Dynamic Product Catalog:** View available items with their corresponding IDs and prices.
-* **Shopping Cart Management:** Add items to a virtual cart and keep track of user selections.
-* **Automated Total Calculation:** Iterates through the cart to calculate the cumulative total of the order.
-* **Mock Secure Checkout:** Includes a payment gateway simulation that validates 16-digit card numbers using fundamental string length validation.
+## How to Run It
+1. Make sure you have Python installed on your computer.
+2. Open your terminal or command prompt.
+3. Run the program by typing: `python main.py`
+4. Type the menu numbers on the screen to use the application.
 
-## Requirements
-* Python 3.x
-* No external libraries required (uses only Python's standard built-in library).
-
-## How to Run
-1. Clone the repository to your local machine:
+## Author
+**Shubham**
