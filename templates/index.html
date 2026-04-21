@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}PyMart — Premium Tech Store{% endblock %}
+
+{% block content %}
+<div class="hero">
+  <h1>Premium Tech,<br/><em>Delivered Fast.</em></h1>
+  <div class="divider"></div>
+  <p>Curated electronics for the discerning buyer</p>
+</div>
+
+<div class="container">
+  <p class="section-label">Our Collection</p>
+
+  <!-- Jinja2 for loop — renders one card per product in PRODUCTS list -->
+  <div class="products-grid">
+    {% for product in products %}
+    <div class="product-card">
+      <span class="product-icon">{{ product.icon }}</span>
+      <div class="product-name">{{ product.name }}</div>
+      <div class="product-desc">{{ product.desc }}</div>
+      <div class="product-footer">
+        <div class="price"><span>₹</span>{{ "{:,}".format(product.price) }}</div>
+
+        <!-- POST form — Flask handles this in add_to_cart() -->
+        <form method="POST" action="{{ url_for('add_to_cart', product_id=product.id) }}">
+          <button type="submit" class="add-btn" title="Add to cart">+</button>
+        </form>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

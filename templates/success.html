@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% set cart_count = 0 %}
+{% block title %}Order Confirmed — PyMart{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width:500px;padding-top:4rem;text-align:center">
+  <div class="success-icon">✓</div>
+  <h1 style="font-size:2.5rem;margin:1rem 0 0.5rem;color:var(--success)">Payment Successful!</h1>
+  <p style="color:var(--muted);font-size:0.95rem;margin-bottom:0.5rem">
+    Your order of <strong style="color:var(--gold)">₹{{ "{:,}".format(total) }}</strong> has been placed.
+  </p>
+  <p style="color:var(--dim);font-size:0.8rem;margin-bottom:2.5rem">
+    Thank you for shopping at PyMart. A confirmation will be sent to your email.
+  </p>
+  <a href="{{ url_for('index') }}" class="btn-primary">Continue Shopping</a>
+</div>
+{% endblock %}

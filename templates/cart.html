@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Your Cart — PyMart{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width:700px;padding-top:2.5rem">
+  <h1 class="page-title">Your Cart</h1>
+
+  {% if items %}
+    <!-- Jinja2 for loop — renders each cart item -->
+    <div class="cart-list">
+      {% for item in items %}
+      <div class="cart-row">
+        <div class="cart-icon">{{ item.icon }}</div>
+        <div class="cart-info">
+          <div class="cart-name">{{ item.name }}</div>
+          <div class="cart-unit">₹{{ "{:,}".format(item.price) }} each</div>
+        </div>
+
+        <!-- Quantity controls (POST to Flask update route) -->
+        <div class="qty-ctrl">
+          <form method="POST" action="{{ url_for('update_cart', product_id=item.id) }}">
+            <input type="hidden" name="action" value="decrease"/>
+            <button type="submit" class="qty-btn">−</button>
+          </form>
+          <span class="qty-num">{{ item.qty }}</span>
+          <form method="POST" action="{{ url_for('update_cart', product_id=item.id) }}">
+            <input type="hidden" name="action" value="increase"/>
+            <button type="submit" class="qty-btn">+</button>
+          </form>
+        </div>
+
+        <div class="cart-subtotal">₹{{ "{:,}".format(item.subtotal) }}</div>
+
+        <!-- Remove button -->
+        <form method="POST" action="{{ url_for('remove_from_cart', product_id=item.id) }}">
+          <button type="submit" class="remove-btn" title="Remove">✕</button>
+        </form>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Total (calculated in Python, passed via Jinja2) -->
+    <div class="cart-footer-bar">
+      <div class="total-row">
+        <span class="total-label">Order Total</span>
+        <span class="total-amount">₹{{ "{:,}".format(total) }}</span>
+      </div>
+      <div class="cart-actions">
+        <a href="{{ url_for('index') }}" class="btn-secondary">← Continue Shopping</a>
+        <a href="{{ url_for('checkout') }}" class="btn-primary">Proceed to Checkout</a>
+      </div>
+    </div>
+
+  {% else %}
+    <!-- Jinja2 conditional — shown when cart is empty -->
+    <div class="empty-state">
+      <div class="empty-icon">🛒</div>
+      <h2>Your cart is empty</h2>
+      <p>Looks like you haven't added anything yet.</p>
+      <a href="{{ url_for('index') }}" class="btn-primary" style="display:inline-block;margin-top:1.5rem">
+        Browse Products
+      </a>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
